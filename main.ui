@@ -114,7 +114,7 @@
      <rect>
       <x>80</x>
       <y>62</y>
-      <width>101</width>
+      <width>107</width>
       <height>34</height>
      </rect>
     </property>
@@ -140,7 +140,7 @@
      <rect>
       <x>540</x>
       <y>20</y>
-      <width>121</width>
+      <width>124</width>
       <height>34</height>
      </rect>
     </property>
@@ -177,11 +177,24 @@
       <x>670</x>
       <y>20</y>
       <width>81</width>
-      <height>71</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>Найти</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="control_btn">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>60</y>
+      <width>81</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Контроль</string>
     </property>
    </widget>
   </widget>
