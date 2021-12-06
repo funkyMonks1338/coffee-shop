@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-from PyQt5 import QtCore, uic
+from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, \
     QTableWidgetItem, QMessageBox
 from sqlalchemy import create_engine, Column, ForeignKey, \
     Integer, Text
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
+from UI.main_window import Ui_MainWindow
+from UI.addEditCoffeeForm import Ui_addEditCoffeeForm
 
 
-DATABASE_FILENAME = 'coffee.sqlite'
+DATABASE_FILENAME = 'data/coffee.sqlite'
 engine = create_engine(f'sqlite:///{DATABASE_FILENAME}')
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -120,10 +122,10 @@ def refill_table_widget(table_widget, fields, coffee_data: list):
     return new_coffee_table
 
 
-class AddEditCoffeeForm(QMainWindow):
+class AddEditCoffeeForm(QMainWindow, Ui_addEditCoffeeForm):
     def __init__(self, parent):
         super().__init__(parent)
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
         self.coffee_list = session.query(CoffeeCup).all()
         self.coffee_str_table = (
             refill_table_widget(self.table_widget, STR_FIELDS, self.coffee_list))
@@ -264,10 +266,10 @@ class AddEditCoffeeForm(QMainWindow):
         event.accept()
 
 
-class CoffeeSearcher(QMainWindow):
+class CoffeeSearcher(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
         self.search_btn.clicked.connect(self.search_coffee)
         self.control_btn.clicked.connect(self.open_control_win)
         for field, model in NAMES_AND_MODELS:
